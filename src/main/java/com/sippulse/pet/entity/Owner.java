@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 import com.sippulse.pet.model.PersonEntity;
 
@@ -32,6 +33,9 @@ public class Owner extends PersonEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 5272533592153838148L;
+	
+	@NotEmpty
+	private String cpf;
 
 	/**
 	 * cellPhone of the owner.

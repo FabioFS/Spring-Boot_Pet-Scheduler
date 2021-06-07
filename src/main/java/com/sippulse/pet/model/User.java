@@ -32,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=true)
 @Entity
-public class User extends BaseEntity implements UserDetails {
+public class User extends PersonEntity implements UserDetails {
 	
 
 	/**
@@ -46,10 +46,6 @@ public class User extends BaseEntity implements UserDetails {
 	
 	@Setter
 	private String password;
-	
-	@Getter
-	@Setter
-	private String fullName;
 	
 	@Getter
 	private Boolean accountNonExpired;
@@ -69,18 +65,17 @@ public class User extends BaseEntity implements UserDetails {
 	 * @param cpf of the owner.
 	 * @return The current value of this owner's.
 	 */	
-	@NotEmpty
 	@Getter @Setter String cpf;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn (name = "id_user") },
-			inverseJoinColumns = { @JoinColumn (name = "id_permission")})
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn (name = "user_id") },
+			inverseJoinColumns = { @JoinColumn (name = "permission_id")})
 	private List<Permission> permissions;
 	
 	public List<String> getRoles() {
 		List<String> roles = new ArrayList<>();
 		for (Permission permission : this.permissions) {
-			roles.add(permission.getName());
+			roles.add(permission.getDescription());
 		}
 		return roles;
 	}

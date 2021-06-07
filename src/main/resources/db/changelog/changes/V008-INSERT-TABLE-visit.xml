@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Fabio Figueiredo da Silva" id="V008">
+	<comment>Initial inserts from visit table</comment>
+		<sql>
+           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`pet_id`,`vet_id`) VALUES (1,'Cão com problemas de gastrite.','2021-06-04 13:00:00',1,2);
+           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`pet_id`,`vet_id`) VALUES (2,'Dona alega que seu gato não está enxergando.','2021-06-04 14:00:00',2,3);
+		</sql>
+	</changeSet>
+</databaseChangeLog>

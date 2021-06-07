@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Fabio Figueiredo da Silva" id="V002">
+	<comment>Initial inserts from owner table</comment>
+		<sql>
+		   INSERT INTO `pet-schedule`.`owner` (`id`,`cpf`,`first_name`,`last_name`,`address`,`cell_phone`,`email`) VALUES (1,'12345678910','Bart','Simpson','Rua peixe trilha n27 Monte Alto Arraial do Cabo - RJ','99999999999','mail@mail.com');
+           INSERT INTO `pet-schedule`.`owner` (`id`,`cpf`,`first_name`,`last_name`,`address`,`cell_phone`,`email`) VALUES (2,'10987654321','Lisa','Simpson','Rua peixe Robalo n27 Monte Alto Arraial do Cabo - RJ','88888888888','mail2@mail.com');
+		</sql>
+		</changeSet>
+</databaseChangeLog>

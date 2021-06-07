@@ -38,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 	
+	/*
+	 * Control access by permission
+	 */
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.httpBasic().disable()

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Fabio Figueiredo da Silva" id="V009">
+	<comment>Initial inserts from user_permission table</comment>
+		<sql>
+           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (1,1);
+           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (2,2);
+           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (3,2);
+           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (4,2);
+		</sql>
+	</changeSet>
+</databaseChangeLog>

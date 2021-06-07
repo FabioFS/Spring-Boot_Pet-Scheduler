@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=true)
 @Data
 @MappedSuperclass
-public class PersonEntity extends NamedEntity {
+public class PersonEntity extends BaseEntity {
 
 	/**
 	 * 

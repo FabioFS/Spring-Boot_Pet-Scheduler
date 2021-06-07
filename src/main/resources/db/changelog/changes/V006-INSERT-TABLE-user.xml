@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Fabio Figueiredo da Silva" id="V006">
+	<comment>Initial inserts from user table</comment>
+		<sql>
+			INSERT INTO `pet-schedule`.`user` (`id`,`first_name`,`last_name`,`cpf`,`user_name`,`password`,`account_non_expired`,`account_non_locked`,`credentials_non_expired`,`enabled`) VALUES (1,'Homer','Simpson','12345678910','homer@pet','123admin', b'1', b'1', b'1', b'1');
+			INSERT INTO `pet-schedule`.`user` (`id`,`first_name`,`last_name`,`cpf`,`user_name`,`password`,`account_non_expired`,`account_non_locked`,`credentials_non_expired`,`enabled`) VALUES (2,'Marge','Simpson','12345678910','marge@pet','123admin', b'1', b'1', b'1', b'1');
+			INSERT INTO `pet-schedule`.`user` (`id`,`first_name`,`last_name`,`cpf`,`user_name`,`password`,`account_non_expired`,`account_non_locked`,`credentials_non_expired`,`enabled`) VALUES (3,'Barney','Gumble','12345678910','barney@pet','123admin', b'1', b'1', b'1', b'1');
+			INSERT INTO `pet-schedule`.`user` (`id`,`first_name`,`last_name`,`cpf`,`user_name`,`password`,`account_non_expired`,`account_non_locked`,`credentials_non_expired`,`enabled`) VALUES (4,'Moe','Szyslak','12345678910','moe@pet','$2a$16$O62WMXTsNeVC9OsGC50vEe6fWc5vmT0wfAgGXZRjolsh245mSZLhm', b'1', b'1', b'1', b'1');
+		</sql>
+	</changeSet>
+</databaseChangeLog>

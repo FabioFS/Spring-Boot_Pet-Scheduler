@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Fabio Figueiredo da Silva" id="V001">
+	<comment>Create initial schema</comment>
+		<sql>
+-- 
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema pet-schedule
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema pet-schedule
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `pet-schedule` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `pet-schedule` ;
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`owner`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`owner` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cpf` VARCHAR(11) NULL DEFAULT NULL,
+  `first_name` VARCHAR(30) NULL DEFAULT NULL,
+  `last_name` VARCHAR(30) NULL DEFAULT NULL,
+  `address` VARCHAR(255) NULL DEFAULT NULL,
+  `cell_phone` VARCHAR(20) NULL DEFAULT NULL,
+  `email` VARCHAR(40) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE INDEX `email` ON `pet-schedule`.`owner` (`email` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`permission`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`permission` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`user` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `user_name` VARCHAR(15) NULL DEFAULT NULL,
+  `cpf` VARCHAR(11) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `account_non_expired` BIT(1) NULL DEFAULT NULL,
+  `account_non_locked` BIT(1) NULL DEFAULT NULL,
+  `credentials_non_expired` BIT(1) NULL DEFAULT NULL,
+  `enabled` BIT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `uk_user_name` ON `pet-schedule`.`user` (`user_name` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`pet_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`pet_type` (
+  `id` BIGINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`pet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`pet` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name-pet` VARCHAR(25) NULL DEFAULT NULL,
+  `birth_date` DATE NULL DEFAULT NULL,
+  `description` VARCHAR(225) NULL DEFAULT NULL,
+  `pet_type_id` BIGINT(2) UNSIGNED NOT NULL,
+  `owner_id` BIGINT(19) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_pet_pet_type1`
+    FOREIGN KEY (`pet_type_id`)
+    REFERENCES `pet-schedule`.`pet_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pet_owner1`
+    FOREIGN KEY (`owner_id`)
+    REFERENCES `pet-schedule`.`owner` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_pet_pet_type1_idx` ON `pet-schedule`.`pet` (`pet_type_id` ASC);
+
+CREATE INDEX `fk_pet_owner1_idx` ON `pet-schedule`.`pet` (`owner_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`vet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`vet` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`visit`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`visit` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(225) NULL DEFAULT NULL,
+  `visit_date` DATE NULL DEFAULT NULL,
+  `visit_time` TIME NULL,
+  `vet_id` BIGINT(19) UNSIGNED NOT NULL,
+  `pet_id` BIGINT(19) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_visit_vet1`
+    FOREIGN KEY (`vet_id`)
+    REFERENCES `pet-schedule`.`vet` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_visit_pet1`
+    FOREIGN KEY (`pet_id`)
+    REFERENCES `pet-schedule`.`pet` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_visit_vet1_idx` ON `pet-schedule`.`visit` (`vet_id` ASC);
+
+CREATE INDEX `fk_visit_pet1_idx` ON `pet-schedule`.`visit` (`pet_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `pet-schedule`.`user_permission`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pet-schedule`.`user_permission` (
+  `user_id` BIGINT(19) UNSIGNED NOT NULL,
+  `permission_id` BIGINT(19) UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`, `permission_id`),
+  CONSTRAINT `fk_user_permission_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `pet-schedule`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_permission_permission1`
+    FOREIGN KEY (`permission_id`)
+    REFERENCES `pet-schedule`.`permission` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+CREATE INDEX `fk_user_permission_permission1_idx` ON `pet-schedule`.`user_permission` (`permission_id` ASC);
+
+CREATE INDEX `fk_user_permission_user1_idx` ON `pet-schedule`.`user_permission` (`user_id` ASC);
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+		</sql>
+	</changeSet>
+</databaseChangeLog>

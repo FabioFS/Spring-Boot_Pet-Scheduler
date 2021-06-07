@@ -21,7 +21,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/target/
 
 target/*
 .settings/*
@@ -31,7 +30,10 @@ target/*
 .attach_pid*
 .idea
 *.iml
-/target
 .sts4-cache/
 .vscode
 _site/
+/target/
+/Postman_collections/
+/docker-compose.yml
+/Diagrama DB PET-SCHEDULE.mwb

@@ -1,0 +1,15 @@
+/bin/
+/target/
+
+target/*
+.settings/*
+.classpath
+.project
+.factorypath
+.attach_pid*
+.idea
+*.iml
+/target
+.sts4-cache/
+.vscode
+_site/

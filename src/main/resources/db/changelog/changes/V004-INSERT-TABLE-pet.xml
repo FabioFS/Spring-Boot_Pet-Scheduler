@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Fabio Figueiredo da Silva" id="V004">
+	<comment>Initial inserts from pet table</comment>
+		<sql>
+		   INSERT INTO `pet-schedule`.`pet` (`id`,`name-pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (1,'Santa s Little Helper','1999-02-20','Buldog black white',1,1);
+           INSERT INTO `pet-schedule`.`pet` (`id`,`name-pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (2,'SnowBall','2003-06-28','vira-lata',1,2);
+		</sql>
+		</changeSet>
+</databaseChangeLog>

@@ -5,7 +5,7 @@ package com.sippulse.pet.entity;
 
 import javax.persistence.Entity;
 
-import com.sippulse.pet.model.NamedEntity;
+import com.sippulse.pet.model.DescriptionEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,11 +17,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 @Data
 @Entity
-public class PetType extends NamedEntity {
-
+public class PetType extends DescriptionEntity{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1886996061209198767L;
+	private static final long serialVersionUID = 1L;
 
 }

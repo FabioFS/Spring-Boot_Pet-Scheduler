@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=true)
 @Data
 @MappedSuperclass
-public class NamedEntity extends BaseEntity {
+public class DescriptionEntity extends BaseEntity {
 
 	/**
 	 * 
@@ -31,11 +31,11 @@ public class NamedEntity extends BaseEntity {
 	private static final long serialVersionUID = -4619374638991995919L;
 	
 	/**
-	 * Unique identification of an Entity
+	 * description of an Entity
 	 * 
 	 * @param name of the Entity.
 	 * @return The current value of this Entity.
 	 */
-	private String name;
+	private String description;
 
 }

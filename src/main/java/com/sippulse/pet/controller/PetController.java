@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 
-@Api(value = "PetEndpoint", description = "REST API for Pet", tags = { "PetEndpoint" })
+@Api(value = "Pet-Shedule_Endpoints", description = "REST API for Pet", tags = { "PetEndpoint" })
 @RestController
 @RequestMapping("/api/pet/v1")
 public class PetController {

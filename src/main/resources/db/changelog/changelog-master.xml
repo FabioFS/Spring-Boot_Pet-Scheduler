@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation = "http://www.liquibase.org/xml/ns/dbchangelog/1.9
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-    
-    
-   <!-- <include file="/db/changelog/changes/202105291334-create-owner-table-changelog-1"/> -->
-   <!-- <include file="/db/changelog/changes/202105291335-insert-customer-table-changelog-2.xml"/> -->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+     http://www.liquibase.org/xml/ns/dbchangelog-ext
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+	<include file="/db/changelog/changes/V001-CREATE-SCHEMA-pet_shedule.xml"/>
+	<include file="/db/changelog/changes/V002-INSERT-TABLE-owner.xml"/>
+	<include file="/db/changelog/changes/V003-INSERT-TABLE-pet_type.xml"/>
+	<include file="/db/changelog/changes/V004-INSERT-TABLE-pet.xml"/>
+	<include file="/db/changelog/changes/V005-INSERT-TABLE-permission.xml"/>
+	<include file="/db/changelog/changes/V006-INSERT-TABLE-user.xml"/>
+	<include file="/db/changelog/changes/V007-INSERT-TABLE-vet.xml"/>
+	<include file="/db/changelog/changes/V008-INSERT-TABLE-visit.xml"/>
+	<include file="/db/changelog/changes/V009-INSERT-TABLE-user_permission.xml"/>
 </databaseChangeLog>

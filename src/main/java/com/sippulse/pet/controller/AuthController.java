@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
  * @author Fábio Figueiredo da Silva
  *
  */
-@Api(tags = "AuthenticationEndpoint") 
+@Api(value = "Pet-Shedule_Endpoints", description = "REST API for Signin", tags = { "AuthenticationEndpoint" })
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

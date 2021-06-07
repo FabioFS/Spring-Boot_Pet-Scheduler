@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 @Data
 @Entity
-public class Permission extends NamedEntity implements GrantedAuthority, Serializable {
+public class Permission extends DescriptionEntity implements GrantedAuthority, Serializable {
 
 		
 	/**
@@ -29,7 +29,7 @@ public class Permission extends NamedEntity implements GrantedAuthority, Seriali
 
 	@Override
 	public String getAuthority() {
-		return this.getName();
+		return this.getDescription();
 	}
 
 }
