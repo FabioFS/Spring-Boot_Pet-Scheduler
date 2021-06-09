@@ -1,13 +1,14 @@
 /**
  * 
  */
-package com.sippulse.pet.service;
+package com.sippulse.pet.service.impl;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sippulse.pet.data.vo.v1.VisitVO;
+import com.sippulse.pet.service.VisitService;
 
 /**
  * @author Fábio Figueiredo da Silva
