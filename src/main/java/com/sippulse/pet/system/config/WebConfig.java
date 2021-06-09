@@ -34,10 +34,6 @@ public class WebConfig implements WebMvcConfigurer {
 
 private static final MediaType MEDIA_TYPE_YML = MediaType.valueOf("application/x-yaml");
 	
-	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-		//converters.add(new YamlJackson2HttpMessageConverter());
-	}
-	
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 			.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
@@ -53,6 +49,10 @@ private static final MediaType MEDIA_TYPE_YML = MediaType.valueOf("application/x
 		.mediaType("json", MediaType.APPLICATION_JSON)
 		.mediaType("xml", MediaType.APPLICATION_XML)
 		.mediaType("x-yaml", MEDIA_TYPE_YML);
+	}
+	
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(new YamlJackson2HttpMessageConverter());
 	}
 
 	@Override

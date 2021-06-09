@@ -81,6 +81,18 @@
 			<version>2.9.2</version>
 		</dependency>
 		
+		<!-- for XML support -->  
+        <dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		
+		<!-- for YML support -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+		</dependency>
+		
 		<!-- for Swagger UI support -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -100,6 +112,12 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>	
+		
+		 <!-- for Unit Tests support -->
+        <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </dependency>  
 		
 		<!-- Liquibase for versionament -->
 		<dependency>

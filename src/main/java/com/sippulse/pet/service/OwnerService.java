@@ -3,6 +3,9 @@
  */
 package com.sippulse.pet.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.sippulse.pet.data.vo.v1.OwnerVO;
 
 /**
@@ -19,12 +22,7 @@ public interface OwnerService {
 
 	void delete(Long id);
 
-	OwnerVO findByCpf(String cpf);
+	OwnerVO findOwnerByCpf(String cpf);
 
-	OwnerVO disableOwner(Long id);
-
-
-	
-	
-
+	Page<OwnerVO> findAll(Pageable pageableRequest);
 }

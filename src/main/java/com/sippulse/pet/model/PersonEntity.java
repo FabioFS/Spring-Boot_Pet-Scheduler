@@ -25,12 +25,12 @@ import lombok.NoArgsConstructor;
 @Data
 @MappedSuperclass
 public class PersonEntity extends BaseEntity {
-
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3130218867174227171L;
-	
+	private static final long serialVersionUID = 6518342296046356742L;
+
 	/**
 	 * First Name of an Entity
 	 * 

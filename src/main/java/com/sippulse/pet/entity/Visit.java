@@ -24,11 +24,14 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Visit extends DescriptionEntity {
 
-	private static final long serialVersionUID = 1L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -688225030006132396L;
+
 	@Column(name = "visit_date")
 	@DateTimeFormat(pattern = "dd/MM/yyyy kk:mm")
-	private LocalDate date;
+	private LocalDate visitDate;
 
 	@Column(name = "pet_id")
 	private Long petId;
@@ -40,7 +43,7 @@ public class Visit extends DescriptionEntity {
 	 * Creates a new instance of Visit for the current date
 	 */
 	public Visit() {
-		this.date = LocalDate.now();
+		this.visitDate = LocalDate.now();
 	}
 
 }

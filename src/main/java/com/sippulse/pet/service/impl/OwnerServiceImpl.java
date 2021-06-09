@@ -1,16 +1,20 @@
 /**
  * 
  */
-package com.sippulse.pet.service;
+package com.sippulse.pet.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sippulse.pet.converter.DozerConverter;
 import com.sippulse.pet.data.vo.v1.OwnerVO;
 import com.sippulse.pet.entity.Owner;
 import com.sippulse.pet.repository.OwnerRepository;
+import com.sippulse.pet.service.OwnerService;
 
 /**
  * @author Fábio Figueiredo da Silva
@@ -39,34 +43,43 @@ public class OwnerServiceImpl implements OwnerService {
 		entity.setAddress(owner.getAddress());
 		entity.setCellPhone(owner.getCellPhone());
 		entity.setCpf(owner.getCpf());
-		
-		
+	
 		OwnerVO vo = DozerConverter.parseObject(repository.save(entity), OwnerVO.class);
 		return vo;
 	}
 
 	@Override
+	public Page<OwnerVO> findAll(Pageable pageable) {
+		Page<Owner> page = repository.findAll(pageable);
+		return page.map(this::convertToOwnerVO);
+	}	
+	
+	private OwnerVO convertToOwnerVO(Owner entity) {
+		return DozerConverter.parseObject(entity, OwnerVO.class);
+	}
+	
+	@Override
 	public OwnerVO findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Owner entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+		return DozerConverter.parseObject(entity, OwnerVO.class);
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		Owner entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+		repository.delete(entity);
 		
 	}
 
 	@Override
-	public OwnerVO findByCpf(String cpf) {
-		// TODO Auto-generated method stub
-		return null;
+	public OwnerVO findOwnerByCpf(String cpf) {
+		Owner entity = repository.findOwnerByCpf(cpf);
+		if (entity != null) {
+			return DozerConverter.parseObject(entity, OwnerVO.class);
+		} else {
+			throw new UsernameNotFoundException("Owner not found");
+		}
 	}
-
-	@Override
-	public OwnerVO disableOwner(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

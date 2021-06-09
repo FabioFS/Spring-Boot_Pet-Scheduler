@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -36,7 +37,7 @@ public class Pet extends DescriptionEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2802479334120486179L;
+	private static final long serialVersionUID = 6325733106797355452L;
 
 	private String namePet;
 	
@@ -44,9 +45,9 @@ public class Pet extends DescriptionEntity {
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate birthDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "type_id")
-	private PetType type;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "pet_type_id")
+	private PetType petType;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
@@ -75,5 +76,9 @@ public class Pet extends DescriptionEntity {
 	public void addVisit(Visit visit) {
 		getVisitsInternal().add(visit);
 		visit.setPetId(this.getId());
+	}
+
+	public boolean isNew() {
+		return this.getId() == null;
 	}
 }

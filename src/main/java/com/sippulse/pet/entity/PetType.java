@@ -17,11 +17,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 @Data
 @Entity
-public class PetType extends DescriptionEntity{
-	
-	/**
+public class PetType extends DescriptionEntity{/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 740279523914867423L;
+	
+	
 
 }
