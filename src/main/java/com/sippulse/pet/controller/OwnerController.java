@@ -67,7 +67,8 @@ public class OwnerController {
     @RequestMapping(
     method = RequestMethod.GET, 
     produces = { "application/json", "application/xml", "application/x-yaml" })
-    public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity<?> findAll(
+    		@RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "limit", defaultValue = "30") int limit,
             @RequestParam(value = "direction", defaultValue = "asc") String direction){
     	

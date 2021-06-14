@@ -3,8 +3,13 @@
  */
 package com.sippulse.pet.entity;
 
-import javax.persistence.Entity;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sippulse.pet.model.PersonEntity;
 
 import lombok.Data;
@@ -22,7 +27,11 @@ public class Vet extends PersonEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8659424248121676261L;
+	private static final long serialVersionUID = 7693537620359813193L;
+	
+	@OneToMany(mappedBy = "vet", fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<Visit> visits;
 	
 
 }

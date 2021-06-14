@@ -1,25 +1,18 @@
 package com.sippulse.pet.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sippulse.pet.model.DescriptionEntity;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +30,7 @@ public class Pet extends DescriptionEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6325733106797355452L;
+	private static final long serialVersionUID = 3059554084548471731L;
 
 	private String namePet;
 	
@@ -53,32 +46,9 @@ public class Pet extends DescriptionEntity {
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
 	
-	@Transient
-	private Set<Visit> visits = new LinkedHashSet<>();
+	@OneToMany(mappedBy = "pet", fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<Visit> visits;
 	
-	protected Set<Visit> getVisitsInternal() {
-		if (this.visits == null) {
-			this.visits = new HashSet<>();
-		}
-		return this.visits;
-	}
-
-	protected void setVisitsInternal(Collection<Visit> visits) {
-		this.visits = new LinkedHashSet<>(visits);
-	}
-
-	public List<Visit> getVisits() {
-		List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-		return Collections.unmodifiableList(sortedVisits);
-	}
-
-	public void addVisit(Visit visit) {
-		getVisitsInternal().add(visit);
-		visit.setPetId(this.getId());
-	}
-
-	public boolean isNew() {
-		return this.getId() == null;
-	}
+	
 }

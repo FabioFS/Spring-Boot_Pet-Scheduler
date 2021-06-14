@@ -10,7 +10,10 @@
 	<comment>Initial inserts from pet table</comment>
 		<sql>
 		   INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (1,'Santa s Little Helper','1999-02-20','Buldog black white',1,1);
-           INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (2,'SnowBall','2003-06-28','vira-lata',1,2);
+           INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (2,'SnowBall','2003-06-28','vira-lata',2,2);
+           INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (3,'SnowBall_2','2003-06-28','vira-lata',2,2);
+           INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (4,'SnowBall_3','2003-06-28','vira-lata',2,2);
+           INSERT INTO `pet-schedule`.`pet` (`id`,`name_pet`,`birth_date`,`description`,`owner_id`,`pet_type_id`) VALUES (5,'SnowBall_4','2003-06-28','vira-lata',2,2);
 		</sql>
 		</changeSet>
 </databaseChangeLog>

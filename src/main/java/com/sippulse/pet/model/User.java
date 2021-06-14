@@ -34,11 +34,10 @@ import lombok.Setter;
 @Entity
 public class User extends PersonEntity implements UserDetails {
 	
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8028424108647534319L;
+	private static final long serialVersionUID = 5093901342206060929L;
 
 	@NotEmpty
 	@Setter

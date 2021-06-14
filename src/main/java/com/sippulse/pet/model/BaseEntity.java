@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @MappedSuperclass
 public class BaseEntity implements Serializable {
-
+	
 	/**
 	 * 
 	 */

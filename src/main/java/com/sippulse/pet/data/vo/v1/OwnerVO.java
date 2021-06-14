@@ -29,8 +29,11 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonPropertyOrder({ "id", "firstName", "lastName", "cpf", "cellPhone", "email", "address","pets","enabled" })
 public class OwnerVO extends ResourceSupport implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5743776112104005698L;
 	
 	@Mapping("id")
 	@JsonProperty("id")

@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @MappedSuperclass
 public class PersonEntity extends BaseEntity {
-	
+
 	/**
 	 * 
 	 */

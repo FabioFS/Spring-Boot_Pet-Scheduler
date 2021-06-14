@@ -26,7 +26,7 @@ public interface VisitService {
 	
 	Page<VisitVO> findVisitByCpfOwner(String cpf, Pageable pageableRequest);
 	
-	Page<VisitVO> findVisitByVet(Long vet_id, Pageable pageableRequest);
+	Page<VisitVO> findByVetId(Long vet_id, Pageable pageableRequest);
 
 	
 }

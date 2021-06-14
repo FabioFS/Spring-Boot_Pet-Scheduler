@@ -29,7 +29,7 @@ public class PetServiceImpl implements PetService{
 		Pet entity = repository.findById(pet.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		
-		entity.setBirthDate(pet.getBirthDate());
+//		entity.setBirthDate(pet.getBirthDate());
 		entity.setNamePet(pet.getNamePet());
 		entity.setDescription(pet.getDescription());
 		entity.setPetType(pet.getPetType());

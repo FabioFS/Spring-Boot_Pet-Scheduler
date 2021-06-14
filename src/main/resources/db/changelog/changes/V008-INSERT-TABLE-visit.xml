@@ -10,8 +10,10 @@
 	<changeSet author="Fabio Figueiredo da Silva" id="V008">
 	<comment>Initial inserts from visit table</comment>
 		<sql>
-           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`pet_id`,`vet_id`) VALUES (1,'Cão com problemas de gastrite.','2021-06-04 13:00:00',1,2);
-           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`pet_id`,`vet_id`) VALUES (2,'Dona alega que seu gato não está enxergando.','2021-06-04 14:00:00',2,3);
+           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`visit_time`,`pet_id`,`vet_id`) VALUES (1,'Cão com problemas de gastrite.','2021-06-04','13:00:00',1,2);
+           INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`visit_time`,`pet_id`,`vet_id`) VALUES (2,'Dona alega que seu gato não está enxergando.','2021-06-04','11:00:00',2,3);
+		   INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`visit_time`,`pet_id`,`vet_id`) VALUES (3,'Dona alega que seu gato não está comendo.','2021-06-05','14:00:00',2,3);
+		   INSERT INTO `pet-schedule`.`visit` (`id`,`description`,`visit_date`,`visit_time`,`pet_id`,`vet_id`) VALUES (4,'Dona alega que seu gato não está urinando.','2021-06-07','14:30:00',2,3);
 		</sql>
 	</changeSet>
 </databaseChangeLog>

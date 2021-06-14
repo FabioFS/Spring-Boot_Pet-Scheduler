@@ -33,7 +33,7 @@ public class Owner extends PersonEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -314556527848611985L;
+	private static final long serialVersionUID = -8157980336140096938L;
 
 	@NotEmpty
 	private String cpf;
@@ -53,56 +53,4 @@ public class Owner extends PersonEntity {
 	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Pet> pets;
-	
-//	protected Set<Pet> getPetsInternal() {
-//		if (this.pets == null) {
-//			this.pets = new HashSet<>();
-//		}
-//		return this.pets;
-//	}
-//
-//	protected void setPetsInternal(Set<Pet> pets) {
-//		this.pets = pets;
-//	}
-//
-////	public List<Pet> getPets() {
-////		List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
-////		PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
-////		return Collections.unmodifiableList(sortedPets);
-////	}
-//
-//	public void addPet(Pet pet) {
-//		if (pet.isNew()) {
-//			getPetsInternal().add(pet);
-//		}
-//		pet.setOwner(this);
-//	}
-//
-//	/**
-//	 * Return the Pet with the given name, or null if none found for this Owner.
-//	 * @param name to test
-//	 * @return true if pet name is already in use
-//	 */
-//	public Pet getPet(String name) {
-//		return getPet(name, false);
-//	}
-//
-//	/**
-//	 * Return the Pet with the given name, or null if none found for this Owner.
-//	 * @param name to test
-//	 * @return true if pet name is already in use
-//	 */
-//	public Pet getPet(String name, boolean ignoreNew) {
-//		name = name.toLowerCase();
-//		for (Pet pet : getPetsInternal()) {
-//			if (!ignoreNew || !pet.isNew()) {
-//				String compName = pet.getNamePet();
-//				compName = compName.toLowerCase();
-//				if (compName.equals(name)) {
-//					return pet;
-//				}
-//			}
-//		}
-//		return null;
-//	}
 }

@@ -24,11 +24,11 @@ import lombok.NoArgsConstructor;
 @Data
 @MappedSuperclass
 public class DescriptionEntity extends BaseEntity {
-
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4619374638991995919L;
+	private static final long serialVersionUID = 3442613052882700716L;
 	
 	/**
 	 * description of an Entity

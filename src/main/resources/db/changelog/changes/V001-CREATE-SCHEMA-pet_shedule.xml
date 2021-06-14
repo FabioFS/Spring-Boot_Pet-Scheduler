@@ -122,10 +122,10 @@ ENGINE = InnoDB;
 -- Table `pet-schedule`.`visit`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pet-schedule`.`visit` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(225) NULL DEFAULT NULL,
   `visit_date` DATE NULL DEFAULT NULL,
-  `visit_time` TIME NULL,
+  `visit_time` TIME NULL DEFAULT NULL,
   `vet_id` BIGINT(19) UNSIGNED NOT NULL,
   `pet_id` BIGINT(19) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),

@@ -21,7 +21,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Permission extends DescriptionEntity implements GrantedAuthority, Serializable {
 
-		
 	/**
 	 * 
 	 */
