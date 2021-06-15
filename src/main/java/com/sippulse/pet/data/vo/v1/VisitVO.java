@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -29,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 @Data
-@JsonPropertyOrder({ "id", "petId", "vetId", "visitDate", "visitTime;","description"})
+@JsonPropertyOrder({ "id", "pet", "vet", "visitDate", "visitTime;","description"})
 public class VisitVO extends ResourceSupport implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +38,11 @@ public class VisitVO extends ResourceSupport implements Serializable{
 	@Mapping("id")
 	@JsonProperty("id")
 	private Long key;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate visitDate;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private LocalTime visitTime;
 	
 	@JsonIgnoreProperties("visits")

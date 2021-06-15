@@ -184,10 +184,37 @@ public class VisitController {
     	
     	Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
     	
-    	Pageable pageableRequest = PageRequest.of(page, limit, Sort.by(sortDirection, "v.visit_date"));
+    	Pageable pageableRequest = PageRequest.of(page, limit, Sort.by(sortDirection, "visitDate"));
     	
     	
     	Page<VisitVO> visits = service.findVisitByCpfOwner(cpfOwner, pageableRequest);
+
+
+    	visits
+    		.stream()
+    		.forEach(p -> p.add(
+    				linkTo(methodOn(VisitController.class).get(p.getKey())).withSelfRel()
+				)
+			);
+        PagedResources<?> resources = assembler.toResource(visits);
+
+        return ResponseEntity.ok(resources);
+    }
+    
+    @ApiOperation(value = "List all visit of the pet by vet's first name" )
+    @RequestMapping( value = "/private/visit-by-vet/{first-name}",
+    method = RequestMethod.GET, 
+    produces = { "application/json", "application/xml", "application/x-yaml" })
+    public ResponseEntity<?> findVisitByFirstNameVet(@RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "limit", defaultValue = "30") int limit,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction, @PathVariable(value = "first-name") String firstNameVet){
+    	
+    	Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+    	
+    	Pageable pageableRequest = PageRequest.of(page, limit, Sort.by(sortDirection, "visitDate"));
+    	
+    	
+    	Page<VisitVO> visits = service.findVisitByFirstNameVet(firstNameVet, pageableRequest);
 
 
     	visits

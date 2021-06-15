@@ -74,9 +74,8 @@ public class VisitServiceImpl implements VisitService {
 
 	@Override
 	public Page<VisitVO> findVisitByCpfOwner(String cpfOwner, Pageable pageableRequest) {
-		//Page<Visit> page = repository.findVisitByCpfOwner(cpfOwner, pageableRequest);
-	//	return page.map(this::convertToVisitVO);
-		return null;
+		Page<Visit> page = repository.findVisitByCpfOwner(cpfOwner, pageableRequest);
+		return page.map(this::convertToVisitVO);
 	}
 	
 	@Override
@@ -85,4 +84,9 @@ public class VisitServiceImpl implements VisitService {
 		return page.map(this::convertToVisitVO);
 	}
 
+	@Override
+	public Page<VisitVO> findVisitByFirstNameVet(String firstNameVet, Pageable pageableRequest) {
+		Page<Visit> page = repository.findVisitByFirstNameVet(firstNameVet, pageableRequest);
+		return page.map(this::convertToVisitVO);
+	}
 }

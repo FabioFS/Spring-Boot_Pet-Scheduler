@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -46,16 +47,16 @@ public class User extends PersonEntity implements UserDetails {
 	@Setter
 	private String password;
 	
-	@Getter
+	@Getter @Setter
 	private Boolean accountNonExpired;
 	
-	@Getter
+	@Getter @Setter
 	private Boolean accountNonLocked;
 	
-	@Getter
+	@Getter @Setter
 	private Boolean credentialsNonExpired;
 	
-	@Getter
+	@Getter @Setter
 	private Boolean enabled;
 	
 	/**
@@ -66,7 +67,8 @@ public class User extends PersonEntity implements UserDetails {
 	 */	
 	@Getter @Setter String cpf;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@Getter @Setter
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn (name = "user_id") },
 			inverseJoinColumns = { @JoinColumn (name = "permission_id")})
 	private List<Permission> permissions;

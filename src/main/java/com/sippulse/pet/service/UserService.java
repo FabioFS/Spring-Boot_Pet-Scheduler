@@ -3,36 +3,26 @@
  */
 package com.sippulse.pet.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import com.sippulse.pet.repository.UserRepository;
+import com.sippulse.pet.data.vo.v1.UserVO;
 
 /**
  * @author Fábio Figueiredo da Silva
  *
  */
-@Service
-public class UserService implements UserDetailsService {
+public interface UserService {
 
-	@Autowired
-	UserRepository repository;
-	
-	public void UserServices(UserRepository repository) {
-		this.repository = repository;
-	}
-	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDetails user = repository.findByUsername(username);
-		if (user != null) {
-			return user;
-		} else {
-			throw new UsernameNotFoundException("Username " + username + " not found");
-		}
-	}
+	UserVO create(UserVO user);
 
+	UserVO update(UserVO user);
+
+	UserVO findById(Long id);
+
+	void delete(Long id);
+
+	UserVO findUserByCpf(String cpf);
+
+	Page<UserVO> findAll(Pageable pageableRequest);
 }
