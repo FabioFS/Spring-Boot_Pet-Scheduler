@@ -9,8 +9,8 @@
 	<changeSet author="Fabio Figueiredo da Silva" id="V003">
 	<comment>Initial inserts from pet_type table</comment>
 		<sql>
-		   INSERT INTO `pet-schedule`.`pet_type` (`id`,`description`) VALUES (1,'DOG');
-           INSERT INTO `pet-schedule`.`pet_type` (`id`,`description`) VALUES (2,'CAT');
+		   INSERT INTO `pet_type` (`id`,`description`) VALUES (1,'DOG');
+           INSERT INTO `pet_type` (`id`,`description`) VALUES (2,'CAT');
 		</sql>
 		</changeSet>
 </databaseChangeLog>

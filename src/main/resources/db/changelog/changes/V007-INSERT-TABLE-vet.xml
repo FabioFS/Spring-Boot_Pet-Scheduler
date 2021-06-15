@@ -10,9 +10,9 @@
 	<changeSet author="Fabio Figueiredo da Silva" id="V007">
 	<comment>Initial inserts from vet table</comment>
 		<sql>
-			INSERT INTO `pet-schedule`.`vet` (`id`,`first_name`,`last_name`) VALUES (1,'Marge','Simpson');
-			INSERT INTO `pet-schedule`.`vet` (`id`,`first_name`,`last_name`) VALUES (2,'Barney','Gumble');
-			INSERT INTO `pet-schedule`.`vet` (`id`,`first_name`,`last_name`) VALUES (3,'Moe','Szyslak');
+			INSERT INTO `vet` (`id`,`first_name`,`last_name`) VALUES (1,'Marge','Simpson');
+			INSERT INTO `vet` (`id`,`first_name`,`last_name`) VALUES (2,'Barney','Gumble');
+			INSERT INTO `vet` (`id`,`first_name`,`last_name`) VALUES (3,'Moe','Szyslak');
 		</sql>
 	</changeSet>
 </databaseChangeLog>

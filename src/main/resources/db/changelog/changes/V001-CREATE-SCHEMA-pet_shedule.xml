@@ -19,13 +19,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema pet-schedule
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `pet-schedule` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
-USE `pet-schedule` ;
+
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`owner`
+-- Table `owner`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`owner` (
+CREATE TABLE IF NOT EXISTS `owner` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `cpf` VARCHAR(11) NULL DEFAULT NULL,
   `first_name` VARCHAR(30) NULL DEFAULT NULL,
@@ -36,13 +35,13 @@ CREATE TABLE IF NOT EXISTS `pet-schedule`.`owner` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE INDEX `email` ON `pet-schedule`.`owner` (`email` ASC);
+CREATE INDEX `email` ON `owner` (`email` ASC);
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`permission`
+-- Table `permission`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`permission` (
+CREATE TABLE IF NOT EXISTS `permission` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
@@ -50,9 +49,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`user`
+-- Table `user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `last_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -66,13 +65,13 @@ CREATE TABLE IF NOT EXISTS `pet-schedule`.`user` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `uk_user_name` ON `pet-schedule`.`user` (`user_name` ASC);
+CREATE UNIQUE INDEX `uk_user_name` ON `user` (`user_name` ASC);
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`pet_type`
+-- Table `pet_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`pet_type` (
+CREATE TABLE IF NOT EXISTS `pet_type` (
   `id` BIGINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
@@ -80,9 +79,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`pet`
+-- Table `pet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`pet` (
+CREATE TABLE IF NOT EXISTS `pet` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_pet` VARCHAR(25) NULL DEFAULT NULL,
   `birth_date` DATE NULL DEFAULT NULL,
@@ -92,25 +91,25 @@ CREATE TABLE IF NOT EXISTS `pet-schedule`.`pet` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_pet_pet_type1`
     FOREIGN KEY (`pet_type_id`)
-    REFERENCES `pet-schedule`.`pet_type` (`id`)
+    REFERENCES `pet_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pet_owner1`
     FOREIGN KEY (`owner_id`)
-    REFERENCES `pet-schedule`.`owner` (`id`)
+    REFERENCES `owner` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_pet_pet_type1_idx` ON `pet-schedule`.`pet` (`pet_type_id` ASC);
+CREATE INDEX `fk_pet_pet_type1_idx` ON `pet` (`pet_type_id` ASC);
 
-CREATE INDEX `fk_pet_owner1_idx` ON `pet-schedule`.`pet` (`owner_id` ASC);
+CREATE INDEX `fk_pet_owner1_idx` ON `pet` (`owner_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`vet`
+-- Table `vet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`vet` (
+CREATE TABLE IF NOT EXISTS `vet` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `last_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -119,9 +118,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`visit`
+-- Table `visit`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`visit` (
+CREATE TABLE IF NOT EXISTS `visit` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(225) NULL DEFAULT NULL,
   `visit_date` DATE NULL DEFAULT NULL,
@@ -131,45 +130,45 @@ CREATE TABLE IF NOT EXISTS `pet-schedule`.`visit` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_visit_vet1`
     FOREIGN KEY (`vet_id`)
-    REFERENCES `pet-schedule`.`vet` (`id`)
+    REFERENCES `vet` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_visit_pet1`
     FOREIGN KEY (`pet_id`)
-    REFERENCES `pet-schedule`.`pet` (`id`)
+    REFERENCES `pet` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_visit_vet1_idx` ON `pet-schedule`.`visit` (`vet_id` ASC);
+CREATE INDEX `fk_visit_vet1_idx` ON `visit` (`vet_id` ASC);
 
-CREATE INDEX `fk_visit_pet1_idx` ON `pet-schedule`.`visit` (`pet_id` ASC);
+CREATE INDEX `fk_visit_pet1_idx` ON `visit` (`pet_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `pet-schedule`.`user_permission`
+-- Table `user_permission`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pet-schedule`.`user_permission` (
+CREATE TABLE IF NOT EXISTS `user_permission` (
   `user_id` BIGINT(19) UNSIGNED NOT NULL,
   `permission_id` BIGINT(19) UNSIGNED NOT NULL,
   PRIMARY KEY (`user_id`, `permission_id`),
   CONSTRAINT `fk_user_permission_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `pet-schedule`.`user` (`id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_permission_permission1`
     FOREIGN KEY (`permission_id`)
-    REFERENCES `pet-schedule`.`permission` (`id`)
+    REFERENCES `permission` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
-CREATE INDEX `fk_user_permission_permission1_idx` ON `pet-schedule`.`user_permission` (`permission_id` ASC);
+CREATE INDEX `fk_user_permission_permission1_idx` ON `user_permission` (`permission_id` ASC);
 
-CREATE INDEX `fk_user_permission_user1_idx` ON `pet-schedule`.`user_permission` (`user_id` ASC);
+CREATE INDEX `fk_user_permission_user1_idx` ON `user_permission` (`user_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

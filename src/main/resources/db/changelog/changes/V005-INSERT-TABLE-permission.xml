@@ -10,9 +10,9 @@
 	<changeSet author="Fabio Figueiredo da Silva" id="V005">
 	<comment>Initial inserts from permission table</comment>
 		<sql>
-			INSERT INTO `pet-schedule`.`permission` (`id`,`description`) VALUES (1,'EMPLOYEE');
-			INSERT INTO `pet-schedule`.`permission` (`id`,`description`) VALUES (2,'VET');
-			INSERT INTO `pet-schedule`.`permission` (`id`,`description`) VALUES (3,'MANAGER');
+			INSERT INTO `permission` (`id`,`description`) VALUES (1,'EMPLOYEE');
+			INSERT INTO `permission` (`id`,`description`) VALUES (2,'VET');
+			INSERT INTO `permission` (`id`,`description`) VALUES (3,'MANAGER');
 		</sql>
 	</changeSet>
 </databaseChangeLog>

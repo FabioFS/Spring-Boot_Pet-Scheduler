@@ -10,10 +10,10 @@
 	<changeSet author="Fabio Figueiredo da Silva" id="V009">
 	<comment>Initial inserts from user_permission table</comment>
 		<sql>
-           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (1,1);
-           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (2,2);
-           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (3,2);
-           INSERT INTO `pet-schedule`.`user_permission` (`user_id`,`permission_id`) VALUES (4,2);
+           INSERT INTO `user_permission` (`user_id`,`permission_id`) VALUES (1,1);
+           INSERT INTO `user_permission` (`user_id`,`permission_id`) VALUES (2,2);
+           INSERT INTO `user_permission` (`user_id`,`permission_id`) VALUES (3,2);
+           INSERT INTO `user_permission` (`user_id`,`permission_id`) VALUES (4,2);
 		</sql>
 	</changeSet>
 </databaseChangeLog>
