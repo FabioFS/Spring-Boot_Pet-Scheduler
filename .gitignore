@@ -34,7 +34,4 @@ target/*
 .vscode
 _site/
 /target/
-/Postman_collections/
-/docker-compose.yml
-/Diagrama DB PET-SCHEDULE.mwb
 /Diagrama DB PET-SCHEDULE.mwb.bak
