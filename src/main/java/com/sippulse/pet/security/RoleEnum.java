@@ -5,20 +5,21 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Roles {
+public enum RoleEnum {
 
-	ROLE_OWNER_CRUD("/api/owner/**", "EMPLOYEE"),
-	ROLE_USER_CRUD("/api/user/**", "EMPLOYEE"),
-	ROLE_PET_CRUD("/api/pet/**", "EMPLOYEE"),
-	ROLE_VISIT_CRUD("/api/visit/**","EMPLOYEE"),
+	ROLE_OWNER_CRUD("/api/owner/**"),
+	ROLE_PET_CRUD("/api/pet/**"),
+	ROLE_PET_TYPE_CRUD("/api/pet-type/**"),
+	ROLE_USER_CRUD("/api/user/**"),
+	ROLE_VET_CRUD("/api/vet/**"),
+	ROLE_VISIT_CRUD("/api/visit/private/**"),
 	
-	ROLE_FIND_VISIT_BY_OWNER("/api/visit/find-visit-by-cpf","");
+	ROLE_FIND_VISIT_BY_OWNER("/api/visit/v1/public/visit-by-cpf/**");
 	
 	private String url;
-	private String description;
 
-	public static Roles find(String role) {
-		for (Roles r : values()) {
+	public static RoleEnum find(String role) {
+		for (RoleEnum r : values()) {
 			if (r.toString().equals(role)) {
 				return r;
 			}

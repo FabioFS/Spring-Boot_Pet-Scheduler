@@ -113,9 +113,16 @@ CREATE TABLE IF NOT EXISTS `vet` (
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `last_name` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  `user_id` BIGINT(19) UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_vet_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE INDEX `fk_vet_user1_idx` ON `vet` (`user_id` ASC);
 
 -- -----------------------------------------------------
 -- Table `visit`

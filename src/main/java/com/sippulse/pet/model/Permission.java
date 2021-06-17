@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Fábio Figueiredo da Silva
+ * 
+ * Class Permission integrate with Spring Security implementing GrantedAuthority
  *
  */
 @AllArgsConstructor
@@ -40,7 +42,7 @@ public class Permission extends DescriptionEntity implements GrantedAuthority, S
 		return this.getDescription();
 	}
 	
-	@ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "permissions", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<User> users;
 

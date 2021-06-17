@@ -13,11 +13,10 @@ import lombok.NoArgsConstructor;
 
 /**
  * 
- * Simple JavaBean domain object with an id property to <code>BaseEntity</code>. 
- * Used as a base class for objects needing this property.
- * 
  * @author Fábio Figueiredo da Silva
- *
+ * 
+ * Simple JavaBean domain object with an id property to <code>BaseEntity</code>. 
+ * Used as a base class for objects needing this property./ *
  */
 @AllArgsConstructor
 @NoArgsConstructor

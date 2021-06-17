@@ -43,7 +43,7 @@ public class PetController {
     produces = { "application/json", "application/xml", "application/x-yaml" })
     public PetVO create(@RequestBody PetVO pet){
     	PetVO petVO = service.create(pet);
-    	petVO.add(linkTo(methodOn(OwnerController.class).get(petVO.getKey())).withSelfRel());
+    	petVO.add(linkTo(methodOn(PetController.class).get(petVO.getKey())).withSelfRel());
         return petVO;
     }
     
@@ -52,7 +52,7 @@ public class PetController {
     consumes = { "application/json", "application/xml", "application/x-yaml" })
     public PetVO update(@RequestBody PetVO pet){
     	PetVO petVO = service.update(pet);
-    	petVO.add(linkTo(methodOn(OwnerController.class).get(petVO.getKey())).withSelfRel());
+    	petVO.add(linkTo(methodOn(PetController.class).get(petVO.getKey())).withSelfRel());
         return petVO;
     }
     
@@ -62,7 +62,7 @@ public class PetController {
     produces = { "application/json", "application/xml", "application/x-yaml" })
     public PetVO get(@PathVariable(value = "id") Long id){
         PetVO petVO = service.findById(id);
-        petVO.add(linkTo(methodOn(OwnerController.class).get(id)).withSelfRel());
+        petVO.add(linkTo(methodOn(PetController.class).get(id)).withSelfRel());
         return petVO;
     }
     

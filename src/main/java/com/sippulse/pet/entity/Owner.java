@@ -35,21 +35,45 @@ public class Owner extends PersonEntity {
 	 */
 	private static final long serialVersionUID = -8157980336140096938L;
 
+	/**
+	 * CPF of the owner.
+	 * 
+	 * @param type String -> CPF of the owner.
+	 * @return The current value of this owner's.
+	 */
 	@NotEmpty
 	private String cpf;
 
 	/**
 	 * cellPhone of the owner.
 	 * 
-	 * @param type String -> name of the owner.
+	 * @param type String -> cellPhone of the owner.
 	 * @return The current value of this owner's.
 	 */
 	private String cellPhone;
 	
+	/**
+	 * email of the owner.
+	 * 
+	 * @param type String -> email of the owner.
+	 * @return The current value of this owner's.
+	 */
 	private String email;
 	
+	/**
+	 * address of the owner.
+	 * 
+	 * @param type String -> address of the owner.
+	 * @return The current value of this owner's.
+	 */
 	private String address;
 	
+	/**
+	 * List pets of the owner.
+	 * 
+	 * @param List<PET> -> pets of the owner.
+	 * @return The current value of this owner's.
+	 */
 	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Pet> pets;

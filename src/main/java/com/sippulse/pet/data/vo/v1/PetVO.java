@@ -45,7 +45,8 @@ public class PetVO extends ResourceSupport implements Serializable{
 	@JsonIgnoreProperties("pets")
 	private Owner owner;
 	
-	@JsonIgnoreProperties("pets")
+	@JsonIgnoreProperties("pet")
 	private List<Visit> visits;
 	private String description;
+
 }
