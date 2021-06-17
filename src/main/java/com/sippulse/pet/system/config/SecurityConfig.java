@@ -12,7 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.sippulse.pet.security.Roles;
+import com.sippulse.pet.security.PermissionEnum;
+import com.sippulse.pet.security.RoleEnum;
 import com.sippulse.pet.security.jwt.JwtConfigurer;
 import com.sippulse.pet.security.jwt.JwtTokenProvider;
 
@@ -52,10 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//public endpoints
 				.antMatchers("/auth/signin").permitAll()
 				.antMatchers("/swagger-ui.html**").permitAll()
-				.antMatchers(Roles.ROLE_FIND_VISIT_BY_OWNER.getUrl()).permitAll()
+				.antMatchers(RoleEnum.ROLE_FIND_VISIT_BY_OWNER.getUrl()).permitAll()
 				
 				//private endpoints
-			//	.antMatchers(Roles.ROLE_OWNER_CRUD.getUrl()).hasRole(Roles.ROLE_OWNER_CRUD.getDescription())
+				.antMatchers(RoleEnum.ROLE_OWNER_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission())
+				.antMatchers(RoleEnum.ROLE_PET_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission())
+				.antMatchers(RoleEnum.ROLE_PET_TYPE_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission())
+				.antMatchers(RoleEnum.ROLE_USER_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission())
+				.antMatchers(RoleEnum.ROLE_VISIT_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission(),PermissionEnum.VET.getPermission())
+				.antMatchers(RoleEnum.ROLE_VET_CRUD.getUrl()).hasAnyAuthority(PermissionEnum.EMPLOYEE.getPermission(),PermissionEnum.VET.getPermission())
 				.anyRequest().permitAll()
 			.and()
 			.apply(new JwtConfigurer(tokenProvider));
