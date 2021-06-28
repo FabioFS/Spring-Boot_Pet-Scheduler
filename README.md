@@ -1,4 +1,4 @@
-Access: herokuapp.com/swagger-ui.html
+Access: https://pet-schedule-br.herokuapp.com/swagger-ui.html
 # Crud Spring Boot - Pet Schedule
 
 # Tecnologias
